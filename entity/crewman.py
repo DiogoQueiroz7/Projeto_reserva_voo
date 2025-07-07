@@ -1,4 +1,4 @@
-from interface import Person, Authenticable
+from .interface import Person, Authenticable
 from datetime import date
 
 class Crewman(Person, Authenticable):

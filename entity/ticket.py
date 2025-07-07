@@ -42,6 +42,6 @@ class Ticket:
             print("ERRO: Número de assento inválido.")
             
     def __str__(self):
-        return (f"--- Passagem [Localizador: {self._locator}] ---\n"
-                f"    Passageiro: {self._customer.name}\n"
-                f"    Voo: {self._flight_code} ({self._origin} -> {self._destination}), Assento: {self._seat}")
+        return (f"Passagem [Localizador: {self._locator}]\n"
+                f"Passageiro: {self._customer.name}\n"
+                f"Voo: {self._flight_code} ({self._origin} -> {self._destination}), Assento: {self._seat}")
