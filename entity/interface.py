@@ -6,7 +6,7 @@ class Person(ABC):
         self._name = name
         self._cpf = cpf
         self._date_of_birth = date_of_birth
-        self._email = email
+        self.email = email
 
     @property
     def name(self):
@@ -26,10 +26,10 @@ class Person(ABC):
 
     @email.setter
     def email(self, new_email: str):
-        if "@" in new_email:
+        if "@" in new_email and "." in new_email:
             self._email = new_email
         else:
-            print("Erro: Formato de email inválido.")
+            print(f"ERRO: Formato de email inválido fornecido: '{new_email}'.")
     
     @abstractmethod
     def introduce(self):
