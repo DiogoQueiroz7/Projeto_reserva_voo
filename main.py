@@ -7,10 +7,11 @@ def main():
 
     while True:
         print("\nOpções do Sistema:")
-        print("1. Listar todos os voos programados")
-        print("2. Ver passageiros de um voo")
-        print("3. Ver tripulação de um voo")
-        print("4. Ver dados do avião de um voo ")
+        print("1. Listar Todos Os Voos Programados")
+        print("2. Ver Passageiros De Um Voo")
+        print("3. Ver Tripulação De Um Voo")
+        print("4. Ver Dados Do Avião De Um Voo ")
+        print("5. Consultar Clientes Por Reserva")
         print("0. Sair")
         
         choice = input("Digite sua escolha: ")
@@ -58,6 +59,27 @@ def main():
                 print(f"  {flight.airplane}") 
             else:
                 print("Voo não encontrado.")
+
+        elif choice == '5':
+            flight_code = input("Digite o código do voo da reserva: ").upper()
+            flight = operator.find_flight(flight_code)
+            
+            if not flight:
+                print("Voo não encontrado.")
+                continue
+            locator_code = input("Digite o localizador da reserva: ")
+            found_customer = None
+            for reservation in flight.reservation.values():
+                if reservation.locator.lower() == locator_code.lower():
+                    found_customer = reservation.customer
+                    break
+            if found_customer:
+                print("\n--- Dados do Cliente da Reserva ---")
+                print(f"Nome: {found_customer.name}")
+                print(f"CPF: {found_customer.show_cpf}")
+                print(f"E-mail: {found_customer.email}")
+            else:
+                print("Reserva não encontrada neste voo.")
 
         elif choice == '0':
             print('Saindo do Sitema, aguarde...')
