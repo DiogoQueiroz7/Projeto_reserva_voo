@@ -14,6 +14,17 @@ class Airplane:
     def model(self):
         return self._model
     
-    def __str__(self):
-        return f"Avião: {self._model}, Fabricante: {self._fabricator}, Registro: {self._register}, Capacidade: {self._capacity}, Status: {self._status_operator}"
+    @property
+    def fabricator(self):
+        return self._fabricator
+        
+    @property
+    def register(self):
+        return self._register
+        
+    @property
+    def status_operator(self):
+        return self._status_operator
     
+    def __str__(self):
+        return (f"Avião: {self._model}, Fabricante: {self._fabricator}, " f"Registro: {self._register}, Capacidade: {self._capacity}, "f"Status: {self._status_operator}")

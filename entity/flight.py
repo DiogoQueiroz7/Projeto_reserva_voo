@@ -42,9 +42,9 @@ class Flight:
         
     def create_reservation(self, customer: Customer, seat: int) -> Optional[Reservation]:
         if not 1 <= seat <= self._airplane.capacity:
-            return None
+            raise ValueError('O assento não existe')
         if seat in self._reservation:
-            return None
+            raise ValueError('O assento já está ocupado')
         new_reservation = Reservation(customer, seat)
         self._reservation[seat] = new_reservation
         return new_reservation

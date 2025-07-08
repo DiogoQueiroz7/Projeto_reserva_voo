@@ -26,19 +26,8 @@ class Person(ABC):
 
     @email.setter
     def email(self, new_email: str):
-        if "@" in new_email and "." in new_email:
+        if isinstance(new_email, str) and "@" in new_email and "." in new_email:
             self._email = new_email
         else:
-            print(f"ERRO: Formato de email inválido fornecido: '{new_email}'.")
+            raise ValueError(f"ERRO: Email inválido: '{new_email}'.")
     
-    @abstractmethod
-    def introduce(self):
-        pass
-
-class Authenticable(ABC):
-    def __init__(self, password: str):
-        self._password = password
-
-    @abstractmethod
-    def authenticate(self, password_attempt: str) -> bool:
-        pass
