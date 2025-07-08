@@ -4,6 +4,7 @@ from .airplane import Airplane
 from .crewman import Crewman
 from .customer import Customer
 from .reservation import Reservation
+import random 
 
 class Flight:
 
@@ -69,21 +70,17 @@ class Flight:
         return new_reservation
 
     def show_passengers(self, quantity: int = 250):
-        '''
-        função para msotrar os passageiros de um voo
-        '''
-        print(f"\n Lista de Passageiros do Voo {self.code}")
+        """Exibe passageiros de maneira aleatório do voo."""
+        print(f"\n--- Passageiros do Voo {self.code} ---")    
         if not self._reservation:
             print("Este voo ainda não tem passageiros.")
             return
-        
-        sorted_reservations = sorted(self._reservation.values(), key=lambda r: r.seat)
-        
-        for i, reservation in enumerate(sorted_reservations):
-            if i >= quantity:
-                break
-            print(f" Assento {reservation.seat}: {reservation.customer.name} (Reserva: {reservation.locator})")
-
+        all_reservations = list(self._reservation.values())
+        random.shuffle(all_reservations)
+        show = all_reservations[:quantity]
+        for reservation in show:
+            print(f"  Assento {reservation.seat}: {reservation.customer.name} (Reserva: {reservation.locator})")
+    
     def show_crew(self):
         '''
         função para msotrar a tripulação de voo 
