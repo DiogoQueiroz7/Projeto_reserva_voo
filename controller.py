@@ -7,6 +7,9 @@ from entity.customer import Customer
 from entity.crewman import Crewman
 import time
 class FlightOperator:
+    '''
+    classe principal do sistema, gerencia todo o programa... popula, cria e inicia
+    '''
     def __init__(self, name: str):
         self.name = name
         self._fleet = []
@@ -16,36 +19,47 @@ class FlightOperator:
 
     @property
     def name(self):
+        '''retorna o nome da companhia'''
         return self._name
     
     @property
     def fleet(self):
+        '''retorna a frota'''
         return self._fleet
     
     @property
     def flights(self):
+        '''retorna os voos o dicionario de voos'''
         return self._flights
         
     @name.setter
     def name(self, new_name: str): 
+        '''
+        valida o nome da comapahia do programa, se tiver menos de 2 letras, levanta erro
+        '''
         if isinstance(new_name, str) and len(new_name) > 2:
             self._name = new_name
         else: 
             raise ValueError("ERRO: Nome da Companhia Inválido. Deve ter mais de 2 caracteres.")
 
     def add_airplane_to_fleet(self, airplane: Airplane):
+        '''adicona um avião a frota'''
         if isinstance(airplane, Airplane):
             self._fleet.append(airplane)
         else: 
             raise TypeError('ERRO: Apenas Aviões podem ser adicionados à frota.')
     
     def schedule_flight(self, flight: Flight):
+        '''verifica se um voo é valido para introduzir ele na biblioteca de voos'''
         if isinstance(flight, Flight):
             self._flights[flight.code] = flight
         else:
             raise TypeError('ERRO: Apenas voos podem ser agendados.')
 
     def find_flight(self, code: str) -> Optional[Flight]:
+        '''
+        busca um voo agendado pelo seu código 
+        '''
         return self._flights.get(code)
 
     def _initialize(self):

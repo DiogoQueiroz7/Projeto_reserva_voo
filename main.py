@@ -2,6 +2,9 @@ from controller import FlightOperator
 import time 
 
 def main():
+    '''
+    função principal que inicia todo o programa
+    '''
     operator = FlightOperator("IFMS AirLines Group ")
     print(f"--- Bem-vindo ao Sistema da {operator.name} ---")
 
@@ -67,7 +70,7 @@ def main():
             if not flight:
                 print("Voo não encontrado.")
                 continue
-            locator_code = input("Digite o localizador da reserva: ")
+            locator_code = input("Digite o CÓDIGO da reserva: ")
             found_customer = None
             for reservation in flight.reservation.values():
                 if reservation.locator.lower() == locator_code.lower():

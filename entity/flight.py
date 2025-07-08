@@ -6,6 +6,10 @@ from .customer import Customer
 from .reservation import Reservation
 
 class Flight:
+
+    '''
+    classe que representa um voo 
+    '''
     def __init__(self, code: str, origin: str, destination: str, airplane: Airplane, departure_time: datetime):
         self._code = code
         self._origin = origin
@@ -17,30 +21,45 @@ class Flight:
 
     @property
     def code(self): 
+        '''retorna o código do voo'''
         return self._code
     @property
     def origin(self): 
+        '''retorna a origem do voo'''
         return self._origin
     @property
     def destination(self): 
+        '''retorna o destino do voo'''
         return self._destination
     @property
     def airplane(self): 
+        '''retorna o avião do voo'''
         return self._airplane
     @property
     def departure_time(self): 
+        '''retorna a hora de partida do voo'''
         return self._departure_time
     @property
     def reservation(self): 
+        '''
+        retorna a reserva do voo
+        '''
         return self._reservation
     @property
     def crewman(self): 
+        '''retorna tripylante do voo'''
         return self._crewman
 
     def add_crewman(self, crewman: Crewman):
+        '''
+        adiciona um triupalnte ao voo
+        '''
         self._crewman.append(crewman)
         
     def create_reservation(self, customer: Customer, seat: int) -> Optional[Reservation]:
+        '''
+        cria a reserva
+        '''
         if not 1 <= seat <= self._airplane.capacity:
             raise ValueError('O assento não existe')
         if seat in self._reservation:
@@ -50,6 +69,9 @@ class Flight:
         return new_reservation
 
     def show_passengers(self, quantity: int = 250):
+        '''
+        função para msotrar os passageiros de um voo
+        '''
         print(f"\n Lista de Passageiros do Voo {self.code}")
         if not self._reservation:
             print("Este voo ainda não tem passageiros.")
@@ -63,6 +85,9 @@ class Flight:
             print(f" Assento {reservation.seat}: {reservation.customer.name} (Reserva: {reservation.locator})")
 
     def show_crew(self):
+        '''
+        função para msotrar a tripulação de voo 
+        '''
         print(f"\n--- Tripulação do Voo {self.code} ---")
         if not self._crewman:
             print("Nenhuma tripulação para este voo.")

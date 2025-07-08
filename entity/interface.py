@@ -13,18 +13,22 @@ class Person(ABC):
 
     @property
     def name(self):
-        ''' usado para retornar o nome dos usuários'''
+        ''' 
+        usado para retornar o nome dos usuários'
+        '''
         return self._name 
 
     @property
     def cpf(self):
-        '''usado para retornar o cpf dos usuários'''
+        '''
+        usado para retornar o cpf dos usuários
+        '''
         return self._cpf
     
     @property
     def show_cpf(self):
         """
-        Retorna uma versão dividida do CPF para mostrar os dados no sistema usando o método de 'split'.
+        Retorna uma versão dividida do CPF para mostrar os dados no sistema .
         """
         partes = self._cpf.replace('-', '.').split('.')
         if len(partes) == 4:
@@ -34,15 +38,21 @@ class Person(ABC):
 
     @property
     def date_of_birth(self):
-        '''usasdo apra retornar a data de aniversário dos usuários'''
+        '''
+        usasdo apra retornar a data de aniversário dos usuários
+        '''
         return self._date_of_birth
 
     @property
     def email(self):
+        '''usado para retornar um email'''
         return self._email
 
     @email.setter
     def email(self, new_email: str):
+        '''
+        faz a validação do email e retorna um erro se ele não estiver nos padrões de email
+        '''
         if isinstance(new_email, str) and "@" in new_email and "." in new_email:
             self._email = new_email
         else:
